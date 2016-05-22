@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="content">
+  <div class="left"  style="width:590px;">
+    <ul>
+    {% for elem in elementosXML %}
+    
+      <p><strong>{{elem}}</strong></p></br>
+
+    {% empty %}
+      <p> Hasta que este usuario no seleccione sus alojamientos favoritos no podemos generar su canal XML </p>
+    {% endfor %}
+    <a href="/{{usuario}}"><h2><strong> Volver a la pagina del usuario </strong></h2></a>
+  </ul>
+  </div>
+</div>
+
+{% endblock content %}

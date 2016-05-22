@@ -1,0 +1,96 @@
+/*#############################################################
+Name: Pink Sunset
+Date: 2006-05-07
+Author: Viktor Persson
+URL: http://www.arcsin.se
+
+Feel free to use and modify but please provide credits.
+#############################################################*/
+* {margin: 0; padding: 0;}
+a {text-decoration: none; color: #F09;}
+body {
+	font: normal 12px "Trebuchet MS",Arial;
+	margin: 20px 0;
+	background: #FFF url(img/bg.jpg) repeat-y fixed bottom center;
+	text-align: center;
+	color: #311;
+}
+ul {
+	padding: 10px 0;
+}
+li {
+	list-style: none;
+	margin: 4px 0 4px 20px;
+}
+li span {
+	font-size: 0.9em; color: #444;
+}
+.container {
+	text-align: left;
+	width: 600px;
+	margin: 0 auto;
+	background: #FFF url(img/top.gif) no-repeat;
+	border: 1px solid #EEE;
+	border-color: #EEE #CCC #AAA;
+}
+.clearer,.footer {
+	clear: both;
+}
+.content,.footer {
+	padding: 0 5px;
+}
+.footer {
+	background: #000;
+	color: #FFF;
+	margin: 5px;
+	padding: 2px 5px;
+}
+.header {
+	height: 210px;
+}
+.header h1 {
+	line-height: 2.4em;
+	padding-left: 18px;
+	color: #F09;
+	font-size: 2.4em;
+}
+.item {
+	padding: 10px;
+	text-align: justify;
+}
+.item h1 {
+	font: normal 1.6em serif,Arial;
+	letter-spacing: 1px;
+	color: #C36;
+}
+.left {
+	float: left;
+	width: 390px;
+	background: #F2EEF2;
+}
+.menu {
+	margin-left: 18px;
+}
+.menu a {
+	padding: 0 2px;
+	margin-right: 12px;
+	font-size: 1.2em;
+}
+.menu a:hover {
+	background: #F09;
+	color: #FFF;
+}
+.right .submenu_end {
+	background: url(img/bgsubmenu_end.gif) no-repeat; height: 29px;
+}
+.right {
+	float: right;
+	width: 195px;
+	background: #DDD;
+}
+.right a:hover {
+	text-decoration: underline;
+}
+.top {
+	height: 250px;
+}

@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="content">
+  <div class="left"  style="width:590px;">
+    <ul>
+      <h2 style="color: #FF1493;"> About </h2>
+      <p><strong>Funcionalidas basica: </strong></p></br>
+      <p> Recurso "/": Muestra una lista con los 10 hoteles mas comentados y a la derecha, las paginas de los usuarios disponibles. </p> </br>
+      <p> Recurso "/alojamiento": Muestra el listado de todos los alojamientos y una formulario para filtrar por tipo de hotel y categoria </p> </br>
+      <p> Recurso "/alojamiento/id": Muestra la pagina del hotel con ese id, en ella hay informacion de dicho hotel </p> </br>
+      <p> Recurso "/usuario": Muestra la pagina de dicho usuario, con sus hoteles favoritos </p> </br>
+      <p> Recurso "/usuario/xml": Muestra el canal XML de la pagina de dicho usuario</p> </br>
+      <p> Recurso "/about": Muesta esta pagina </p> </br>
+
+      <p><strong>Funcionalidas optativa: </strong></p></br>
+      <p> Uso de favicon </p> </br>
+
+    <a href="/{{usuario}}"><h2><strong> Volver a la pagina del usuario </strong></h2></a>
+  </ul>
+  </div>
+</div>
+
+{% endblock content %}

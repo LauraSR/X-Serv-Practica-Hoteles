@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="content">
+  {% if titulo == "" %}
+  <h1 style="color: #FF69B4;">Pagina de {{usuario}} </h1>
+      {% if request.user.is_authenticated and request.user.username == usuario %}
+      </br>
+      <form action="/cambiartitulo" method="POST">{% csrf_token %}
+          <label for="titulo">Pon un nuevo nombre a tu pagina: </label>
+          <input type="text" name="titulo" value="" id="titulo" style = "width:400px; height:20px;">
+          <input type="submit" value="Cambialo" style="background-color: #FF69B4;
+            border: 1px solid #FF1493;
+            border-radius: 5px;
+            box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+            color: #000;
+            font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+            padding: 12px 0px 14px;
+            text-align: center;
+            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+            width: 150px;"/>
+      </form>
+      </br>
+      {% endif %}
+    {% else %}
+      <h1 style="color: #FF69B4;">{{titulo}}</h1>
+      {% if request.user.is_authenticated and request.user.username == usuario %}
+      </br>
+      <form action="/cambiartitulo" method="POST">{% csrf_token %}
+          <label for="titulo"><h2>Pon un nuevo nombre a tu pagina: </h2></label>
+          <input type="text" name="titulo" value="" id="titulo" style = "width:400px; height:20px;">
+          <input type="submit" value="Cambialo" style="background-color: #FF69B4;
+          border: 1px solid #FF1493;
+          border-radius: 5px;
+          box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+          color: #000;
+          font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+          padding: 12px 0px 14px;
+          text-align: center;
+          text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+          width: 150px;"/>
+      </form>
+      </br>
+      {% endif %}
+    {% endif %}
+    <div class="left"  style="width:590px;">
+      <div class="item">
+        <ul class="mainList">
+          {% for alojamiento,url_img in alojamientos %}
+          <div class="10alojamientosCom">
+            <li>
+              <item>
+                <div class="alojamiento">
+                  <a href="{{alojamiento.alojamiento_id.url}}"><h2> {{alojamiento.alojamiento_id.nombre|striptags|safe}} </h2></a></br>
+                  <p><strong> Este alojamiento fue guardado en favoritos: </strong> {{alojamiento.fecha}}</p>
+                  <p><strong> Direccion : </strong> {{alojamiento.alojamiento_id.direccion|striptags|safe}} </p>
+                  <a href="/alojamientos/{{alojamiento.alojamiento_id.id}}"><strong> Visita la pagina de este alojamiento</strong></a>
+                </div>
+                {% ifnotequal url_img "" %}
+                  <img src="{{url_img}}" alt=""  width="400" height="200" ><br/>
+                {% endifnotequal %}
+              </item>
+            </li><br/><hr class="separator" width="450" height="200">
+
+          </div>
+          {% empty %}
+            <p> NO has seleccionado ningun alojamiento favorito </p>
+          {% endfor %}
+        </ul>
+
+        <a href="/mostrarXml/{{usuario}}"><h2><strong> Canal XML de este usuario </strong></h2></a>
+      
+
+      </div>
+    </div>
+  </div>
+  <br class="clearer"/><span></span>
+</div>
+
+{% endblock content %}

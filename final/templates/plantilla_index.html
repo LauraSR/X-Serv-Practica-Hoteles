@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="content">
+  <h1>Los hoteles con mas comentarios son: </h1>
+  <div>
+    <div class="right">
+      <ul>
+        <h2> · Paginas de usuarios: </h2>
+        {% for usuario,titulo in usuarios %}
+        <li><a href="/{{usuario}}"> - {{titulo|striptags|safe}}</a><br/></li>
+        {% endfor %}
+      </ul>
+      <div class="submenu_end"></div>
+    </div>
+
+    <div class="left"  style="width:470px;">
+      <div class="item">
+        <ul class="mainList">
+          {% for alojamiento,url_img in alojamientos %}
+          <div class="alojamientosFavoritos">
+            <li>
+              <item>
+                <div class="alojamiento">
+                  <a href="{{alojamiento.url}}"><h2> {{alojamiento.nombre|striptags|safe}} </h2></a></br>
+                  <p><strong> Direccion : </strong> {{alojamiento.direccion|striptags|safe}} </p>
+                  <a href="/alojamientos/{{alojamiento.id}}"><strong> Mas informacion</strong></a>
+                </br>
+              </div>
+                {% ifnotequal url_img "" %}
+                  <img src="{{url_img}}" alt=""  width="400" height="200" ><br/>
+                {% endifnotequal %}
+              </item>
+            </li><br/><hr class="separator" width="450" height="200">
+
+          </div>
+          {% empty %}
+            <p> No hay alojamientos con comentarios </p>
+          {% endfor %}
+        </ul>
+
+
+
+      </div>
+    </div>
+  </div>
+  <br class="clearer"/><span></span>
+</div>
+
+{% endblock content %}

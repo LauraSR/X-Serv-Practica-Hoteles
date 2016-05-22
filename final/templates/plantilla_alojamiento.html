@@ -1,0 +1,91 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="content">
+  <h1>Alojamientos en Madrid: </h1>
+  <div>
+
+    <div class="left"  style="width:590px;">
+      <div class="item">
+        <form action="/filtrarAloja" method="POST" >{% csrf_token %}
+        <select id="categoria" name="categoria">
+          <option value="todos" selected="selected">- select -</option>
+          <option value="Hoteles">Hoteles</option>
+          <option value="Apartahoteles">Apartahoteles</option>
+          <option value="Hostales">Hostales</option>
+          <option value="Albergues">Albergues</option>
+          <option value="Residencias universitarias">Residencias Universitarias</option>
+          <option value="Camping">Camping</option>
+          <option value="Pensiones">Pensiones</option>
+        </select>
+        <select id="estrellas" name="estrellas">
+          <option value="todos" selected="selected">- select -</option>
+          <optgroup label="Estrellas">
+            <option value="1 estrella">1 Estrella</option>
+            <option value="2 estrellas">2 Estrellas</option>
+            <option value="3 estrellas">3 Estrellas</option>
+            <option value="4 estrellas">4 Estrellas</option>
+            <option value="5 estrellas">5 Estrellas</option>
+            <option value="5 estrellas Gran Lujo">5 Estrellas Gran Lujo</option>
+          </optgroup>
+          <optgroup label="Llaves">
+            <option value="1 llave" >1 Llave</option>
+            <option value="2 llaves">2 Llaves</option>
+            <option value="3 llaves">3 Llaves</option>
+            <option value="4 llaves">4 Llaves</option>
+          </optgroup>
+        </select>
+        <input type="submit" value="Filtrar" style="background-color: #FF69B4;
+          border: 1px solid #FF1493;
+          border-radius: 5px;
+          box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+          color: #FFF;
+          font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+          padding: 12px 0px 14px;
+          text-align: center;
+          text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+          width: 150px;"/>
+      </form></br>
+      <ul class = "indexlist">
+      {% if alojamientos == empty %}
+        {% for alojamiento in todos %}
+        <div class="alojamientosFavoritos" style="width:750px;">
+          <li>
+            <item>
+              <div class="alojamiento">
+              <h2> {{alojamiento.nombre|striptags|safe}} </h2>
+                <a href="/alojamientos/{{alojamiento.id}}"><strong> Visita la pagina de este alojamiento</strong></a>
+              </div>
+            </item>
+          </li><br/><hr class="separator" width="450" height="200">
+        </div>
+        {% endfor %}
+      {% else %}
+        <ul class="mainList">
+          {% for alojamiento in alojamientos %}
+          <div class="alojamientosFavoritos" style="width:750px;">
+            <li>
+              <item>
+                <div class="alojamiento">
+                <h2> {{alojamiento.nombre|striptags|safe}} </h2>
+                  <a href="/alojamientos/{{alojamiento.id}}"><strong> Visita la pagina de este alojamiento</strong></a>
+                </div>
+              </item>
+            </li><br/><hr class="separator" width="450" height="200">
+
+          </div>
+          {% empty %}
+            <p> No hay alojamientos que coincidan con tu busqueda </p>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+
+
+      </div>
+    </div>
+  </div>
+  <br class="clearer"/><span></span>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "plantilla_index.html" %}
+
+{% block content %}
+<div class="content">
+  <h1>Los hoteles con mas comentarios son: </h1>
+  <div class="left">
+    <div class="item">
+      <ul class="mainList">
+        {% for alojamiento in alojamiento %}
+        <div class="10alojamientosCom">
+          <li>
+            <item>
+              <div class="alojamiento">
+                <a href="{{alojamiento.web}}"><h2> {{alojamiento.name}} </h2></a>
+                <p><strong> Direccion : </strong> {{alojamiento.direccion}} </p>
+                <a href="/alojamientos/{{alojamiento.id}}"><strong> Mas informacion</strong></a>
+              </div>
+              <!--<img src="{{imagenes}}" alt="" class="imgresize"><br/>-->
+            </item>
+          </li><br/><hr class="separator">
+
+        </div>
+        {% empty %}
+          <p> No hay alojamientos con comentarios </p>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+  <div class="right">
+    <ul>
+      <li><a href="index.html">Hola</a><br/><span>Caracola!</span></li>
+      <li><a href="index.html">Curabitur</a><br/><span>Curabitur pellentesque, lectus at volutpat interdum.</span></li>
+      <li><a href="index.html">Penatibus</a><br/><span>Cum sociis natoque penatibus et magnis dis parturient montes.</span></li>
+      <li><a href="index.html">Bibendum</a><br/><span>Pellentesque a nibh quis nunc volutpat aliquam.</span></li>
+    </ul>
+    <div class="submenu_end"></div>
+  </div>
+  <br class="clearer"/><span></span>
+</div>
+
+{% endblock content %}

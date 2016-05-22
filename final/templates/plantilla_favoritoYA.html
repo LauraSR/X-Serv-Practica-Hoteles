@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="content">
+  <h1> {{alojamiento.nombre|striptags|safe}} </h1>
+
+    <div class="left" style="width:590px;" >
+      <div class="item">
+        <ul class="mainList">
+
+          <div class="alojamientoId">
+            <li>
+              <item>
+                <div class="alojamiento" >
+                  <p><strong> Este alojamiento ya esta en favoritos! </strong></p> </br>
+                  <p><strong> Direccion : </strong> {{alojamiento.direccion|striptags|safe}} </p> </br>
+                  <strong> Web : </strong><a href="/alojamientos/{{alojamiento.url}}"><strong> {{alojamiento.url}}</strong></a></br>
+                  <br/><p><strong> Descripcion del alojamiento :</p> </strong> {{alojamiento.descripcion|striptags|safe}}</p></br>
+                </div>
+
+                {% ifnotequal imagenes "" %}
+                  {% for imagen in imagenes %}
+                    <img src="{{imagen.url}}" alt=""  width="400" height="200"></br>
+                  {% endfor %}
+                {% endifnotequal %}
+                <br/>
+                {% ifnotequal comentarios "" %}
+                <ul>
+                  <p><strong>Comentarios : </strong></p>
+                  {% for comentario in comentarios %}
+                  <li><p> <strong>· </strong>{{comentario.cuerpo|striptags|safe}}</p></li>
+                  {% endfor %}
+                </ul>
+                  {% endifnotequal %}
+                </br>
+                  {% if request.user.is_authenticated %}
+                <form action="/incluirComentario/{{alojamiento.id}}" method="POST">{% csrf_token %}
+                    <label for="comentario"><h2>Escribe aqui tus comentarios:</h2></label>
+                    <input type="text" name="comentario" value="" id="comentario" style = "width:500px; height:75px;">
+                    <input type="submit" value="Enviar" style="background-color: #FF69B4;
+                      border: 1px solid #FF1493;
+                      border-radius: 5px;
+                      box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+                      color: #000;
+                      font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+                      padding: 12px 0px 14px;
+                      text-align: center;
+                      text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+                      width: 150px;"/>
+                </form>
+              </br>
+                <form action="/cambiarIdioma/{{alojamiento.id}}" method="POST">{% csrf_token %}
+                <label for="idioma"><h2>Cambia el idioma</h2></label>
+                  <select id="idioma" name="idioma">
+                    <option value="" selected="selected">- selecciona -</option>
+                    <option value="ingles">ingles</option>
+                    <option value="frances">frances</option>
+                    <option value="espaniol">espaniol</option>
+                  </select>
+                  <input type="submit" value="Enviar" style="background-color: #FF69B4;
+                    border: 1px solid #FF1493;
+                    border-radius: 5px;
+                    box-shadow: 0px 0px 0px 1px rgba(255, 115, 100, 0.4) inset, 0px 1px 3px #333;
+                    color: #000;
+                    font: bold 20px/1 "helvetica neue",helvetica,arial,sans-serif;
+                    padding: 12px 0px 14px;
+                    text-align: center;
+                    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+                    width: 150px;"/>
+                </form>
+                {% endif %}
+                </br>
+                </div>
+              </item>
+            </li><br/><hr class="separator" width="450" height="200">
+
+          </div>
+
+        </ul>
+
+
+
+      </div>
+    </div>
+  </div>
+  <br class="clearer"/><span></span>
+</div>
+
+{% endblock content %}
